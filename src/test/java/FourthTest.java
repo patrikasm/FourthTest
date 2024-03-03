@@ -33,8 +33,6 @@
 
 ************************************************************************************************/
 
-package org.example;
-
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -85,18 +83,19 @@ public class FourthTest {
     }
 
     @Test
-    public void testScenario1() {
+    void testScenario1() {
         navigateAndAddItems("data1.txt");
+        Assertions.assertEquals("Your order has been successfully processed!", completeCheckoutProcess());
     }
 
     @Test
-    public void testScenario2() {
+    void testScenario2() {
         navigateAndAddItems("data2.txt");
+        Assertions.assertEquals("Your order has been successfully processed!", completeCheckoutProcess());
     }
 
     @AfterEach
     public void completeCheckoutAndTearDownDriver() {
-        completeCheckoutProcess();
         if (driver != null) {
             driver.quit();
         }
@@ -155,7 +154,7 @@ public class FourthTest {
         }
     }
 
-    private void completeCheckoutProcess() {
+    private String completeCheckoutProcess() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement shoppingCart = wait.until(ExpectedConditions.elementToBeClickable(
@@ -194,18 +193,7 @@ public class FourthTest {
         WebElement orderConfirmation = wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//div[@class='title']")));
 
-        String orderConfirmationText = orderConfirmation.getText();
-        assert orderConfirmationText.equals("Your order has been successfully processed!");
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            LOGGER.info("Exception occurred while waiting for order confirmation");
-            Thread.currentThread().interrupt();
-        }
-
-
+        return orderConfirmation.getText();
 
     }
-
 }
