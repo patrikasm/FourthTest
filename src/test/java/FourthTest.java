@@ -57,10 +57,11 @@ public class FourthTest {
     private static final String USER_PASSWORD_123 = "Password123";
     private static final Logger LOGGER = Logger.getLogger(FourthTest.class.getName());
     private static final Random random = new Random();
+    private static final String CHROME_DRIVER_DIR = "/usr/local/bin/chromedriver"; // /Users/patrikasm/Downloads/chromedriver-mac-x64/chromedriver
 
     @BeforeAll
     public static void setupTestAndCreateUser() {
-        System.setProperty("webdriver.chrome.driver", "/Users/patrikasm/Downloads/chromedriver-mac-x64/chromedriver");
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_DIR);
         staticDriver = new ChromeDriver();
         staticDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         boolean userCreated = false;
@@ -77,7 +78,7 @@ public class FourthTest {
 
     @BeforeEach
     public void setDriverAndLogin() {
-        System.setProperty("webdriver.chrome.driver", "/Users/patrikasm/Downloads/chromedriver-mac-x64/chromedriver");
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_DIR);
         driver = new ChromeDriver();
         loginUser();
     }
