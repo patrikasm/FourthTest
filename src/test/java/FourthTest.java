@@ -57,7 +57,7 @@ public class FourthTest {
     private static final String USER_PASSWORD_123 = "Password123";
     private static final Logger LOGGER = Logger.getLogger(FourthTest.class.getName());
     private static final Random random = new Random();
-    private static final String CHROME_DRIVER_DIR = "/Users/patrikasm/Downloads/chromedriver-mac-x64/chromedriver"; // /usr/local/bin/chromedriver
+    private static final String CHROME_DRIVER_DIR = "/usr/local/bin/chromedriver"; // /Users/patrikasm/Downloads/chromedriver-mac-x64/chromedriver
 
     @BeforeAll
     public static void setupTestAndCreateUser() {
